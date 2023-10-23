@@ -13,7 +13,9 @@ installing : ```java <script src="matter.js" type="text/javascript"></script> ``
 
 tinkering :
 
-i try the demos and it kind of changing my mind of making a sling shot game
+i try the demos and it kind of changing my mind of making a 2048 game
+
+now i want to make a sling shot game
 
 
 
