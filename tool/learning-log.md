@@ -11,7 +11,9 @@ videos : The coding Train : Matter.js physics
 
 installing : ```java <script src="matter.js" type="text/javascript"></script> ```
 
+tinkering :
 
+i try the demos and it kind of changing my mind of making a sling shot game
 
 
 
