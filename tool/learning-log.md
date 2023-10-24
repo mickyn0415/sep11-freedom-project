@@ -20,8 +20,8 @@ now i want to make a sling shot game
 
 
 
-X/X/X:
-* Text
+10/24/23:
+ tutorial:  https://www.codebrainer.com/blog/learn-matterjs-with-examples 
 
 
 <!-- 
