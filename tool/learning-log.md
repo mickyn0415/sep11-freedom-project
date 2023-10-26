@@ -24,6 +24,10 @@ now i want to make a sling shot game
  tutorial:  https://www.codebrainer.com/blog/learn-matterjs-with-examples 
 
 
+ 10/26/23 :
+ tinkering i use matter.js on replit to test out the code which it all the code on the html and javascript         
+
+
 <!-- 
 * Links you used today (websites, videos, etc)
 * Things you tried, progress you made, etc
