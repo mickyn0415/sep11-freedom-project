@@ -67,7 +67,8 @@ Runner.run(runner, engine); ```
 the number in the middle of the code changes the size of the shape    
 ```java World.add(world, [
   Bodies.circle(200, 400, 100),
-  Bodies.circle(400, 200, 55),```
+  Bodies.circle(400, 200, 55),
+```
 
 10/27/23:
 
