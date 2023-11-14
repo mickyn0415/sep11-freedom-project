@@ -67,8 +67,7 @@ Runner.run(runner, engine); ```
 the number in the middle of the code changes the size of the shape    
 ```java World.add(world, [
   Bodies.circle(200, 400, 100),
-  Bodies.circle(400, 200, 55),
-```
+  Bodies.circle(400, 200, 55),```
 
 10/27/23:
 
@@ -131,8 +130,7 @@ let render = Render.create({
   options: {
     width: 800,
     height: 600,
-    wireframes: false
-```
+    wireframes: false```
 
 11/5/23
 from the codes i found on replit i know that it adds the shape to website or game but i still don't know why it gives error when i try to change the shape from 
