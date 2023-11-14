@@ -146,7 +146,8 @@ World.add(world, [
   Bodies.circle(200, 400, 25),
   Bodies.rectangle(200, 300, 50,50)
   Bodies.rectangle(300, 200, 50, 50)
-])```
+])
+```
 
 
 11/7/23
@@ -182,6 +183,7 @@ function StartSlingshot() {
 
  let pyramid = Composites.pyramid(550, 0, 5, 10, 0, 0, function (x, y) {
  return Bodies.rectangle(x, y, 25, 40);
- });```
+ });
+```
 
 11/13/23
