@@ -9,7 +9,9 @@ Project: **X**
 10/23/23:
 videos : The coding Train : Matter.js physics 
 
-installing : ```java <script src="matter.js" type="text/javascript"></script> ```
+installing : ```java 
+<script src="matter.js" type="text/javascript"></script> 
+```
 
 tinkering :
 
@@ -58,16 +60,19 @@ Render.run(render);
 var runner = Runner.create();
 
 // run the engine
-Runner.run(runner, engine); ```
+Runner.run(runner, engine);
+```
 
 
  10/26/23 :
  tinkering i use matter.js on replit to test out the code which it all the code on the html and javascript
 
 the number in the middle of the code changes the size of the shape    
-```java World.add(world, [
+```java
+World.add(world, [
   Bodies.circle(200, 400, 100),
-  Bodies.circle(400, 200, 55),```
+  Bodies.circle(400, 200, 55),
+```
 
 10/27/23:
 
@@ -79,21 +84,17 @@ in isStatic if you type true it will be a actally a shape and if false the shape
 ```java Bodies.rectangle(200, 10, 800, 50, { isStatic: false }),```
 
 if i change the wireframe to true all the colors of the shape are gone 
-```java let render = Render.create({
+```java
+let render = Render.create({
   element: document.body,
   engine: engine,
   options: {
     width: 1000,
     height: 600,
     wireframes: false
-  }```
-<!-- 
-* Links you used today (websites, videos, etc)
-* Things you tried, progress you made, etc
-* Challenges, a-ha moments, etc
-* Questions you still have
-* What you're going to try next
--->
+  }
+```
+
 
 10/29/23
 it tried starting with the html
@@ -119,7 +120,8 @@ it tried starting with the html
 <body>
  
 </body>
-</html>```
+</html>
+```
 
 11/3/23
 i learn that i need to add a renderer ,engine and add also to make the user able to move the objects with it mouse
@@ -130,7 +132,8 @@ let render = Render.create({
   options: {
     width: 800,
     height: 600,
-    wireframes: false```
+    wireframes: false
+```
 
 11/5/23
 from the codes i found on replit i know that it adds the shape to website or game but i still don't know why it gives error when i try to change the shape from 
@@ -160,7 +163,8 @@ Create balloon with the rope
 
 i try creating the example from codebrainer but it not really working i tried on replit i think there was to much code so it not working  this was the code that i found
 
-```java function StartSlingshot() {
+```java
+function StartSlingshot() {
  clearWorld("Slingshot")
 
  // add bodies
