@@ -187,24 +187,61 @@ function StartSlingshot() {
 ```
 
 11/20/23
-`Matter.Engine` simluation of the world
-`Matter.Render` basic HTML canvas-based renderer
-`Matter.Runner` creates a loop 
-`Matter.Bodies` creates the shapes you want 
-`Matter.Composite` a container for compound objects 
-`Matter.Composites` mostly use for layout
-`Matter.Constraint` for creating and manipulating constraints
+`Matter.Engine` 
+
+simluation of the world
+
+`Matter.Render`
+
+basic HTML canvas-based renderer
+
+`Matter.Runner` 
+
+creates a loop 
+
+`Matter.Bodies`
+
+creates the shapes you want 
+
+`Matter.Composite` 
+
+a container for compound objects 
+
+`Matter.Composites` 
+
+mostly use for layout
+
+`Matter.Constraint` 
+
+for creating and manipulating constraints
 
 `let engine`
+
 `let render`
+
 `let runner`
+
 variables dedicated to the objects for the work with matter.js. ( dont' know how to explain this so just copy the defintion )
 
-first we had to create a engine ` engine = Engine.create();`
-second we had to create a renderer ` render = Render.create ({ stuff inside don't know yet });
-third we have to run the renderer ` Render.run(render);`
-fourth we have to create a runner ` runner = Runner.create();`
-and 5th we have to run the engine ` Runner.run(runner,engine);
+first we had to create a engine
+
+` engine = Engine.create();`
+
+second we had to create a renderer 
+
+` render = Render.create ({ stuff inside don't know yet });
+
+third we have to run the renderer 
+
+` Render.run(render);`
+
+fourth we have to create a runner
+
+` runner = Runner.create();`
+
+and 5th we have to run the engine 
+
+` Runner.run(runner,engine);
 
 
 
