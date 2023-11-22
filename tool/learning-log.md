@@ -267,5 +267,21 @@ render: { fillstroke : 'red'}
 
 11/22/23
 
+ to create 
 
+```java
+const Engine = Matter.Engine,
+render = Matter.render,
+World = Matter.World,
+Bodies = Matter.Bodies 
+````
 
+then create a engine , renderer then add and start the engine
+
+when creating a shape and add ut to the world 
+
+`const box = Bodies.rectangle(100,100,40,40);`
+
+then we add it to the world 
+
+`World,add(engine.world,[box]);`
