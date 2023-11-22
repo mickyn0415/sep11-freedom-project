@@ -243,5 +243,29 @@ and 5th we have to run the engine
 
 ` Runner.run(runner,engine);
 
+11/21/23
+
+when creating a shape 
+
+```java
+Bodies.rectangle (400,399,332,232,)
+Bodies.circle
+```
+still don't know what does the numbers means i think it the length , width and height 
+
+and those 2 shape are the ones that i mostly seen
+
+i think when adding colors you use render 
+
+in the code it saids 
+
+```java
+Bodies.rectangle (400,399,332,232,)
+Bodies.rectangle (400,399,332,232,{
+render: { fillstroke : 'red'}
+```
+
+11/22/23
+
 
 
