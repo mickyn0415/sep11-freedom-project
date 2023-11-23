@@ -285,3 +285,33 @@ when creating a shape and add ut to the world
 then we add it to the world 
 
 `World,add(engine.world,[box]);`
+
+11/23/23
+
+The order of creating matter.js
+
+1 create engine
+
+2 create renderer
+
+3 create shapes or bodies 
+
+4 add bodies to the world
+
+5 run the engine
+
+6 run the renderer
+
+when creating a loop for matter.js
+```java
+function matterLoop(){
+Matter.Engine.update(engine);
+Matter.Render.world(render);
+requestAnimationFrame(matterLoop);
+}
+```
+the call the function
+
+`gameLoop();`
+
+11/24/23
