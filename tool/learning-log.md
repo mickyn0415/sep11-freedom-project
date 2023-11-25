@@ -316,3 +316,6 @@ the call the function
 
 11/25/23
 
+with all the steps in learn 2 days ago i createed my first shape 
+
+next step is learn about how to use mouses to control the moving shape in the game
