@@ -319,3 +319,17 @@ the call the function
 with all the steps in learn 2 days ago i createed my first shape 
 
 next step is learn about how to use mouses to control the moving shape in the game
+
+11/26/23
+
+on the official website : https://brm.io/matter-js/docs/classes/Mouse.html
+
+it shows the classes
+
+`Matter.Mouse.create(element)`  i think in the parethesis the elemnet means the shape that is control for the movement of the mouse 
+
+another method 
+
+`Matter.Mouse.clearSourceEvents(mouse) `
+
+the first method looks better and more understand able to me 
