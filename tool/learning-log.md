@@ -333,3 +333,20 @@ another method
 `Matter.Mouse.clearSourceEvents(mouse) `
 
 the first method looks better and more understand able to me 
+
+11/30/23 
+i found this code on google
+
+```java
+// add mouse control
+ let mouse = Mouse.create(render.canvas),  // i think this one  is used to connect it to something which make the mouse able to be used
+ mouseConstraint = MouseConstraint.create(engine, {
+ mouse: mouse,
+ constraint: {
+ stiffness: 0.2,     // i think this is how fast the mouse is going to work
+ render: {
+ visible: false
+ }
+ }
+ });
+```
