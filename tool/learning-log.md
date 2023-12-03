@@ -363,17 +363,32 @@ create engine
 
 create renderer
 
-create the blocks properties ( i think this is how it is make )
+create the blocks properties ( i think this is how it is make ) i used some of the code i found online
 
 ```java
 var boxWid = 100;
 var boxHei = 100;
 var blockAmount = 7;
+var x = 100;
+var y = 50; 
 ```
 then make the blocks
+
+
+12/3/23
+ start from what i left off yesterday
 ```java
+ for (var i = 0 ; i < blockAmount; i++) {
+var x1 = x;
+var y2 = y + (boxHei + 10) * i;
 
-
-
-
+var block = Matter.Bodies . rectangle (x,y, boxWid ,boxHei, {
+density : 0.50,
+friction :0.5;
+restitution : 0.6 });
 ```
+
+then add it to the world with matter.world add
+
+and start the engine and renderer
+ 
