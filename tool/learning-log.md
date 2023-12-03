@@ -350,3 +350,30 @@ i found this code on google
  }
  });
 ```
+
+12/2/23
+
+what i tried to make 
+
+i want to try making multiple block stack on it 
+
+on javascript  
+
+create engine
+
+create renderer
+
+create the blocks properties ( i think this is how it is make )
+
+```java
+var boxWid = 100;
+var boxHei = 100;
+var blockAmount = 7;
+```
+then make the blocks
+```java
+
+
+
+
+```
