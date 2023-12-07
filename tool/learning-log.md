@@ -392,3 +392,21 @@ then add it to the world with matter.world add
 
 and start the engine and renderer
  
+12/7/23
+
+i try retry tinkering with the starter code in the offical matter.js website 
+
+i found out that the install code from the offical website didn't work 
+
+`<script src="matter.js"></script>`
+
+but i use the install code from ` https://www.codebrainer.com/blog/learn-matterjs-with-examples`
+
+it worked
+
+`<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>`
+
+but anyways
+
+i change the code where it had the square to circle and a bunch of circle but they keep rolling of the webpage
+
