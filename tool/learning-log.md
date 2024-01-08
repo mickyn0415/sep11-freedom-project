@@ -410,3 +410,19 @@ but anyways
 
 i change the code where it had the square to circle and a bunch of circle but they keep rolling of the webpage
 
+
+1/8/23
+i what i make the shape have colors 
+
+i founded a video on youtube about it 
+
+https://www.youtube.com/watch?v=O4w8hbcSFYs
+
+```java
+render: {
+         fillStyle: 'red', // this fills in the shape with color
+         strokeStyle: 'blue', the outine around the shape 
+         lineWidth: 3
+    }
+```
+
