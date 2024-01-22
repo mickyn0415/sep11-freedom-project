@@ -426,3 +426,33 @@ render: {
     }
 ```
 
+1/22/23
+`var boxA = Bodies.rectangle(400, 200, 80, 80);`
+
+the number in front stands for the distance between each of the shape
+
+idk the 200 and the 80 location stands for the height and the width of the shapes
+
+```java
+var boxA = Bodies.rectangle(400, 50,  100, 100);
+var boxB = Bodies.rectangle(400, 50, 100, 100);
+var boxC = Bodies.rectangle(400,50,100,100);
+var boxD = Bodies.rectangle(400,50,100,100);
+var boxE = Bodies.rectangle(300, 50, 100, 100);
+var boxF = Bodies.rectangle(300, 50, 100, 100);
+var boxG = Bodies.rectangle(300, 50, 100, 100);
+var boxH = Bodies.rectangle(300, 50, 100, 100);
+var boxI = Bodies.rectangle(200, 50, 100, 100);
+var boxJ = Bodies.rectangle(200, 50, 100, 100);
+var boxK = Bodies.rectangle(200, 50, 100, 100);
+var boxL = Bodies.rectangle(200, 50, 100, 100);
+var boxM = Bodies.rectangle(100, 50, 100, 100);
+var boxN = Bodies.rectangle(100, 50, 100, 100);
+var boxO = Bodies.rectangle(100, 50, 100, 100);
+var boxP = Bodies.rectangle(100, 50, 100, 100);
+var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+
+// add all of the bodies to the world
+Composite.add(engine.world, [boxA, boxB,boxC,boxD,boxE,boxF,boxG,boxH,boxI,boxJ,boxK,boxL,boxM,boxN,boxO,boxP, ground]);
+```
+code above used to create a stack of blocks
