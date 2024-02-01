@@ -456,3 +456,14 @@ var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
 Composite.add(engine.world, [boxA, boxB,boxC,boxD,boxE,boxF,boxG,boxH,boxI,boxJ,boxK,boxL,boxM,boxN,boxO,boxP, ground]);
 ```
 code above used to create a stack of blocks
+
+
+2/1/23
+i added a circle for it to be the laucher and a platform for it to stay on it 
+```java
+var ballA = Bodies.circle(600,500,30,70);
+var groundB = Bodies.rectangle(600, 500, 150, 30, { isStatic: false });
+```
+i'm still try for the circle to move and hit it target 
+
+
