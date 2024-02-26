@@ -411,7 +411,7 @@ but anyways
 i change the code where it had the square to circle and a bunch of circle but they keep rolling of the webpage
 
 
-1/8/23
+1/8/24
 i what i make the shape have colors 
 
 i founded a video on youtube about it 
@@ -426,7 +426,7 @@ render: {
     }
 ```
 
-1/22/23
+1/22/24
 `var boxA = Bodies.rectangle(400, 200, 80, 80);`
 
 the number in front stands for the distance between each of the shape
@@ -458,12 +458,63 @@ Composite.add(engine.world, [boxA, boxB,boxC,boxD,boxE,boxF,boxG,boxH,boxI,boxJ,
 code above used to create a stack of blocks
 
 
-2/1/23
+2/1/24
 i added a circle for it to be the laucher and a platform for it to stay on it 
 ```java
 var ballA = Bodies.circle(600,500,30,70);
 var groundB = Bodies.rectangle(600, 500, 150, 30, { isStatic: false });
 ```
 i'm still try for the circle to move and hit it target 
+
+
+2/26/24
+
+i try creating the model of how the sling shot is going to look like
+
+i made some rectangle which is going to be the holder of the shape
+
+i still trying to make a label of the shapes on the rectangle
+
+
+```java
+// module aliases
+var Engine = Matter.Engine,
+    Render = Matter.Render,
+    Runner = Matter.Runner,
+    Bodies = Matter.Bodies,
+    Composite = Matter.Composite;
+
+// create an engine
+var engine = Engine.create();
+
+// create a renderer
+var render = Render.create({
+    element: document.body,
+    engine: engine
+});
+
+// create two boxes and a ground
+var bucketA = Bodies.rectangle(250,100,130,80);
+var bucketB = Bodies.rectangle(100,530,130,80,{isStatic:true});
+var bucketC = Bodies.rectangle(60,300,130,60,{isStatic:true});
+
+
+var ground = Bodies.rectangle(400, 600, 810, 60, { isStatic: true });
+var ballA = Bodies.circle(600,150,30,70);
+var groundB = Bodies.rectangle(600, 200, 100, 10, { isStatic: true });
+
+
+
+// add all of the bodies to the world
+Composite.add(engine.world, [ballA,groundB,bucketA,bucketB,bucketC ,ground]);
+// run the renderer 
+Render.run(render);
+
+// create runner
+var runner = Runner.create();
+
+// run the engine
+Runner.run(runner, engine);
+```
 
 
