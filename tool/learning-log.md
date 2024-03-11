@@ -518,7 +518,23 @@ Runner.run(runner, engine);
 ```
 
 3/4/24
+
 after all the trys in jsbin i decide to  it move to the codespace and add it there but is not really working well 
+
+i create a canvas for the game changing the size of the canvas 
+
+```java
+const render = Matter.Render.create({
+    element:document.body,
+    engine:engine,
+    options:{
+        width:1500,
+        height:1500
+    }
+})
+```
+
+
 
 
 
