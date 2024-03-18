@@ -58,22 +58,31 @@ const render = Matter.Render.create({
 const box =
 Matter.Bodies.rectangle(900,310,80,80);
 
-var Hollow = // a hollow box
+var Hollow =
 Matter.Bodies.rectangle(250, 120, 160, 160);
 
+var box1 =
+Matter.Bodies.rectangle(500, 120, 160, 160);
 
-const floor = // ground to make the shapes fall
+var box2 =
+Matter.Bodies.rectangle(50, 120, 160, 160);
+
+
+const floor = // ground to make the shapes fall on
 Matter.Bodies.rectangle(650,750,1800,20,{isStatic : true});
 
 var floor1 =
-Matter.Bodies.rectangle(900,400,180,20,{isStatic : true});
+Matter.Bodies.rectangle(900,400,100,20,{isStatic : true});
+
+var floor2 =
+Matter.Bodies.rectangle(50,400,160,20,{isStatic : true});
 
 
 
 
 // add bodies
 Matter.World.add(engine.world,
-[box,floor,floor1,Hollow]);
+[box,floor,floor1,Hollow,box1,floor2,box2]);
 
 // start engine
 Matter.Runner.run(engine)
