@@ -534,6 +534,22 @@ const render = Matter.Render.create({
 })
 ```
 
+3/25/24
+
+start to add mouse control
+
+`MouseConstraint = Matter.MouseConstraint,
+         Constraint = Matter.Constraint,
+             Mouse = Matter.Mouse;`
+
+             it just like the renderer and engine i have to create it all on the top before i start to create the shapes
+
+               `var mouse = Mouse.create(render.canvas);
+                 var mouseConstraint = MouseConstraint.create(engine, {
+                  mouse: mouse`
+              
+        hen i have to add the mouse control and connects it with the canvas 
+
 
 
 
