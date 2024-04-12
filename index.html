@@ -5,150 +5,103 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="style.css" rel="stylesheet" type="text/css" />
         <style>
-          body {
-            margin: 0;
-              overflow: hidden;
-                }
 
-               #canvas {
-                width: 100px;
-               height: 100px;
-               display:block;}
 
-               #score {
-                background-color:white;
-                font-size:20px;
-               }
 
-               #title{
-                text-align:center;
-                font-size:10px;
-               }
                    </style>
 
         <title>Title</title>
     </head>
     <body >
 
- <div id = "game-container"></div>
+        <div id = "game-container"></div>
 
         <!-- HTML -->
-        <button id = score> SCORE :   </button>
+
         <p id = title> slingshot shorting game</p>
+
+        <div id="safeTimer">
+
+          <h2>Timer</h2>
+          <p>get as many score you can in 3 min </p>
+          <p id="safeTimerDisplay">3:00</p>
+          </div>
 
 
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- <script src="script.js"></script> -->
-
-
         <script>
-          //const canvas = document.getElementById("score");
-       // const ctx = canvas.getContext("2d");
+
+
+                var engine;
+                   var world;
+                  var slingshot;
+                  var score = 0;
 
 
 
-
-       var Engine = Matter.Engine,
-         Render = Matter.Render,
-         World = Matter.World,
-          Bodies = Matter.Bodies,
-         MouseConstraint = Matter.MouseConstraint,
-         Constraint = Matter.Constraint,
-             Mouse = Matter.Mouse;
+                  function setup() {
+                    createCanvas(1200, 600);
+                       engine = Matter.Engine.create();
+                       world = engine.world;
 
 
-
-              // create an engine
-              var engine = Engine.create();
-
-                // create a renderer
-
-              var render = Render.create({
-              element: document.body,
-              engine: engine,
-              options: {
-                 width: window.innerWidth,
-                  height: window.innerHeight,
-                   wireframes: false
-                  }});
+                       // Create slingshot
+                       var ground = Matter.Bodies.rectangle(400, 500, 600, 20, { isStatic: true });
+                       var boxA = Matter.Bodies.rectangle(200, 100, 80, 80);
+                       var boxb = Matter.Bodies.rectangle(300, 200, 80, 80);
+                        slingshot = Matter.Constraint.create({
+                          pointA: { x: 200, y: 100 },
+                           bodyB: boxA,
+                            stiffness: 0.05,
+                            length: 30
+                           });
+                            Matter.World.add(world, [ground, boxA,boxb, slingshot]);
+                          }
 
 
+                          function draw() {
+                            background(220);
+                             Matter.Engine.update(engine);
 
-                  // create two boxes and a ground
-                  var boxA = Bodies.rectangle(400, 200, 80, 80);
-                  var boxB = Bodies.rectangle(450, 50, 80, 80);
-                  var boxC = Bodies.circle(400, 200, 60, 60);
-                  var boxD = Bodies.rectangle(400, 200, 110, 80);
-                  var boxE = Bodies.rectangle(400, 200, 80, 80);
-                  var boxF = Bodies.rectangle(400, 200, 80, 80);
-                  var boxG = Bodies.rectangle(400, 200, 80, 80);
-                  var ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight - 10, window.innerWidth, 20, { isStatic: true });
+                              // Draw slingshot
+                               var posA = slingshot.pointA;
+                                var posB = slingshot.bodyB.position;
+                                line(posA.x, posA.y, posB.x, posB.y);
+                                rect(posB.x - 40, posB.y - 40, 80, 80);
 
+                                // Display score
+                                fill(0);
+                                textSize(20);
+                                  text('Score: ' + score, 20, 30);
+                                }
 
+                                function mouseDragged() {
 
-                  // create a constraint
-                  var constraint = Constraint.create({
-                    pointA: { x: 400, y: 0 },
-                    bodyB: boxA,
-                    stiffness: 0.02
-                  });
+                                  // Control slingshot with mouse
+                                  Matter.Body.setPosition(slingshot.bodyB, { x: mouseX, y: mouseY });
+                                }
 
-                  var constraint1 = Constraint.create({
-                    pointA: { x: 200, y: 0 },
-                    bodyB: boxC,
-                    stiffness: 0.02
-                  });
-
-
-                  var constraint2 = Constraint.create({
-                    pointA: { x: 600, y: 20},
-                    bodyB: boxD,
-                    stiffness: 0.02
-                  });
+                                function mouseReleased() {
+                                  // When mouse released, apply force to the slingshot
+                                  var force = Matter.Vector.sub(slingshot.pointA, slingshot.bodyB.position);
+                                  // Adjust the multiplier for force strength
+                                  Matter.Body.applyForce(slingshot.bodyB, slingshot.bodyB.position, force);
+                                  // Increment score
+                                   score++;
+                                  }
 
 
 
-
-                // add all of the bodies to the world
-                World.add(engine.world, [boxA, boxB,boxC,boxD,boxE,boxF,boxG, ground, constraint,constraint1,constraint2]);
+</script>
 
 
-
-                   // run the engine
-                   Matter.Runner.run(engine)
-
-                  // run the renderer
-                  Render.run(render);
-
-                // add mouse control
-                var mouse = Mouse.create(render.canvas);
-                 var mouseConstraint = MouseConstraint.create(engine, {
-                  mouse: mouse
-                });
-
-                     World.add(engine.world, mouseConstraint);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </script>
-    </body>
+</body>
 </html>
+
