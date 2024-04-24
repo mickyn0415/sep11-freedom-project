@@ -1,150 +1,192 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="style.css" rel="stylesheet" type="text/css" />
-        <style>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+    </style>
+    <title>Title</title></head>
 
 
-
-                   </style>
-
-        <title>Title</title>
+    <body>
     </head>
-    <body >
-
-        <div id = "game-container"></div>
-
-        <!-- HTML -->
-
-        <p id = title> slingshot shorting game</p>
-
-        <div id="safeTimer">
-
-          <h2>Timer</h2>
-          <div>Time left = <span id="timer"></span></div>
-          </div>
-
-
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- <script src="script.js"></script> -->
-        <script>
-
-             document.getElementById('timer').innerHTML =
-                   01 + ":" + 11;
-                      startTimer();
-
-
-                    function startTimer() {
-                     var presentTime = document.getElementById('timer').innerHTML;
-                      var timeArray = presentTime.split(/[:]+/);
-                        var m = timeArray[0];
-                       var s = checkSecond((timeArray[1] - 1));
-                           if(s==59){m=m-1}
-                              if(m<0){
-                                 return
-                  }
-
-                      document.getElementById('timer').innerHTML =
-                          m + ":" + s;
-                           console.log(m)
-                             setTimeout(startTimer, 1000);
-
-}
-
-                                function checkSecond(sec) {
-                           if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-                               if (sec < 0) {sec = "59"};
-                                 return sec;
-                                 if(sec = 0);
-                                 return "stop"
-}
+    <div id="game-container"></div>
+    <!-- HTML -->
+      <p id="title">Slingshot ducky Game</p>
+      <div id="safeTimer">
+        <h2>Timer</h2>
+        <div>Time left = <span id="timer"></span></div>
+    </div>
+   </body>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- <script src="script.js"></script> -->
+   <script>
+   document.getElementById('timer').innerHTML =
+   01 + ":" + 11;
+   startTimer();
 
 
 
+      function startTimer() {
+        var presentTime = document.getElementById('timer').innerHTML;
+         var timeArray = presentTime.split(/[:]+/);
+          var m = timeArray[0];
+           var s = checkSecond((timeArray[1] - 1));
+            if(s==59){m=m-1}
+             if(m<0){
+                 return
+                }
 
+                document.getElementById('timer').innerHTML =
+                 m + ":" + s;
+                  console.log(m)
+                  setTimeout(startTimer, 1000);
+                }
 
-
+            function checkSecond(sec) {
+                 if (sec < 10 && sec >= 0) {sec = "0" + sec};
+                 // add zero in front of numbers < 10
+                  if (sec < 0) {sec = "59"};
+                  return sec;
+                   if(sec = 0);
+                   return "stop"
+                }
 
                 var engine;
-                   var world;
-                  var slingshot;
-                  var score = 0;
+                var world;
+                var slingshot;
+                var score = 0;
+                var ducks = [];
+                var buckets = [];
+                var initialPos;
 
 
+                function setup() {
+                     createCanvas(900, 550);
+                      engine = Matter.Engine.create();
+                      world = engine.world;
 
-                  function setup() {
-                    createCanvas(1200, 600);
-                       engine = Matter.Engine.create();
-                       world = engine.world;
-
-
-                       // Create slingshot
-                       var ground = Matter.Bodies.rectangle(400, 500, 600, 20, { isStatic: true });
-                       var boxA = Matter.Bodies.rectangle(200, 100, 80, 80);
+                      // Create slingshot
+                      var ground = Matter.Bodies.rectangle(400, 500, 600, 20, { isStatic: true });
+                      var boxA = Matter.Bodies.rectangle(200, 100, 80, 80);
                        var boxb = Matter.Bodies.rectangle(300, 200, 80, 80);
                         slingshot = Matter.Constraint.create({
-                          pointA: { x: 200, y: 100 },
-                           bodyB: boxA,
-                            stiffness: 0.05,
-                            length: 30
-                           });
-                            Matter.World.add(world, [ground, boxA,boxb, slingshot]);
-                          }
+                             pointA: { x: 200, y: 100 },
+                             bodyB: boxA,
+                              stiffness: 0.05,
+                               length: 30
+                             });
 
 
-                          function draw() {
-                            background(220);
-                             Matter.Engine.update(engine);
-
-                              // Draw slingshot
-                               var posA = slingshot.pointA;
-                                var posB = slingshot.bodyB.position;
-                                line(posA.x, posA.y, posB.x, posB.y);
-                                   fill(229, 235, 52)
-                                ellipse(posB.x - 40, posB.y - 40, 80, 80);
-                                fill(235, 128, 52)
-                                ellipse(posB.x - 40, posB.y - 30, 30, 20);
-                                fill(0);
-                                ellipse(posB.x - 30, posB.y - 55, 10, 20);
-                                ellipse(posB.x - 55, posB.y - 55, 10, 20);
-
-
-
-                                // Display score
-                                fill(0);
-                                textSize(20);
-                                  text('Score: ' + score, 20, 30);
-                                }
-
-                                function mouseDragged() {
-
-                                  // Control slingshot with mouse
-                                  Matter.Body.setPosition(slingshot.bodyB, { x: mouseX, y: mouseY });
-                                }
-
-                                function mouseReleased() {
-                                  // When mouse released, apply force to the slingshot
-                                  var force = Matter.Vector.sub(slingshot.pointA, slingshot.bodyB.position);
-                                  // Adjust the multiplier for force strength
-                                  Matter.Body.applyForce(slingshot.bodyB, slingshot.bodyB.position, force);
-                                  // Increment score
-                                   score++;
+                             // Create buckets
+                              for (var i = 0; i < 3; i++) {
+                                  var bucket = Matter.Bodies.rectangle(100 + i * 400, 500, 100, 100);
+                                   buckets.push(bucket);
                                   }
+                                   Matter.World.add(world, [ground, boxA, boxb, slingshot])
+                                }
+
+                function draw() {
+                     background(52, 201, 235);
+                      Matter.Engine.update(engine);
+
+                      // Draw slingshot
+                      var posA = slingshot.pointA;
+                      var posB = slingshot.bodyB.position;
+                       line(posA.x, posA.y, posB.x, posB.y);
+                        fill(229, 235, 52);
+                         ellipse(posB.x - 40, posB.y - 40, 80, 80);
+                         fill(235, 128, 52);
+                          ellipse(posB.x - 40, posB.y - 30, 30, 20);
+                           fill(0);
+                             ellipse(posB.x - 30, posB.y - 55, 10, 20);
+                              ellipse(posB.x - 55, posB.y - 55, 10, 20);
+
+                              // Draw buckets
+                               fill(52, 201, 235);
+                                for (var i = 0; i < buckets.length; i++) {
+                               rect(buckets[i].position.x - 50, buckets[i].position.y - 50, 100, 100);
+                             }
+
+                             // Display score
+                              fill(0);
+                              textSize(20);
+                               text('Score: ' + score, 20, 30);
 
 
+                               // Spawn ducks
+                                for (var i = ducks.length - 1; i >= 0; i--) {
+                                      ducks[i].display();
+                                        if (ducks[i].isCaught()) {
+                                              score++;
+                                               ducks.splice(i, 1);
+                                              }
+
+                                            }
+                                        }
+                    function mousePressed() {
+                        var posB = slingshot.bodyB.position;
+                         if (mouseX > posB.x - 40 && mouseX < posB.x + 40 && mouseY > posB.y - 40 && mouseY < posB.y + 40) {
+                              initialPos = { x: mouseX, y: mouseY };
+                             }
+                            }
 
 
-</script>
+                    function mouseDragged() {
+                         var posB = slingshot.bodyB.position;
+                          if (initialPos) {
 
 
-</body>
-</html>
+                            // Control slingshot with mouse
+                    Matter.Body.setPosition(slingshot.bodyB, { x: posB.x + mouseX - initialPos.x, y: posB.y + mouseY - initialPos.y });
+             }
+            }
+
+
+                 function mouseReleased() {
+                     initialPos = null;
+                      // When mouse released, apply force to the slingshot
+                     var force = Matter.Vector.sub(slingshot.pointA, slingshot.bodyB.position);
+                      // Adjust the multiplier for force strength
+                      Matter.Body.applyForce(slingshot.bodyB, slingshot.bodyB.position, force);
+                    }
+
+
+                    // Duck class
+                    function Duck(x, y) {
+                        this.body = Matter.Bodies.circle(x, y, 30);
+                         Matter.World.add(world, this.body);
+                          this.display = function () {
+                             var pos = this.body.position;
+                             fill(235, 232, 52);
+                             ellipse(pos.x, pos.y, 60, 60);
+                             }
+                 this.isCaught = function () {
+                     for (var i = 0; i < buckets.length; i++) {
+                         if (Matter.Bounds.contains(buckets[i].bounds, this.body.position)) {
+                             Matter.World.remove(world, this.body);
+                              return true;
+                             }
+                             }
+                              return false;
+                             }
+                            }
+
+                            // Function to spawn ducks
+
+                function spawnDuck() {
+                     var x = random(width);
+                     var y = random(height / 2);
+                      ducks.push(new Duck(x, y));
+                    }
+
+                    // Call spawnDuck every second
+                    setInterval(spawnDuck, 1000);
+                    </script>
+                    </body>
 
