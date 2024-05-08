@@ -19,43 +19,15 @@
     <!-- HTML -->
       <p id="title"> ducky swong</p>
       <div id="safeTimer">
-        <h2>Timer</h2>
-        <div>Time left = <span id="timer"></span></div>
+        
     </div>
    </body>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
    <!-- <script src="script.js"></script> -->
    <script>
-   document.getElementById('timer').innerHTML =
-   01 + ":" + 11;
-   startTimer();
 
 
 
-      function startTimer() {
-        var presentTime = document.getElementById('timer').innerHTML;
-         var timeArray = presentTime.split(/[:]+/);
-          var m = timeArray[0];
-           var s = checkSecond((timeArray[1] - 1));
-            if(s==59){m=m-1}
-             if(m<0){
-                 return
-                }
-
-                document.getElementById('timer').innerHTML =
-                 m + ":" + s;
-                  console.log(m)
-                  setTimeout(startTimer, 1000);
-                }
-
-            function checkSecond(sec) {
-                 if (sec < 10 && sec >= 0) {sec = "0" + sec};
-                 // add zero in front of numbers < 10
-                  if (sec < 0) {sec = "59"};
-                  return sec;
-                   if(sec = 0);
-                   return "stop"
-                }
 
                 var engine;
                 var world;
@@ -68,6 +40,7 @@
 
                 function setup() {
                      createCanvas(900, 550);
+
                       engine = Matter.Engine.create();
                       world = engine.world;
 
@@ -129,8 +102,9 @@
 
                                             }
                                         }
-                    function mousePressed() {
-                        var posB = slingshot.bodyB.position;
+                    function mouseDragged() {
+                        var posB = slingshot.bodyB.position
+
                          if (mouseX > posB.x - 40 && mouseX < posB.x + 40 && mouseY > posB.y - 40 && mouseY < posB.y + 40) {
                               initialPos = { x: mouseX, y: mouseY };
                              }
@@ -186,7 +160,9 @@
                     }
 
                     // Call spawnDuck every second
-                    setInterval(spawnDuck, 1000);
+                    setInterval(spawnDuck, 110);
+
+
                     </script>
                     </body>
 
