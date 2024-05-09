@@ -19,7 +19,7 @@
     <!-- HTML -->
       <p id="title"> ducky swong</p>
       <div id="safeTimer">
-        
+
     </div>
    </body>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -27,142 +27,154 @@
    <script>
 
 
+             var engine;
+             var world;
+             var slingshot;
+             var score = 0;
+             var highScore = 0;
+             var ducks = [];
+             var buckets = [];
+             var initialPos;
+             var timer;
+             var gameOver = false;
 
 
-                var engine;
-                var world;
-                var slingshot;
-                var score = 0;
-                var ducks = [];
-                var buckets = [];
-                var initialPos;
+             function setup() {
+               createCanvas(900, 600);
+               engine = Matter.Engine.create();
+                world = engine.world;
 
 
-                function setup() {
-                     createCanvas(900, 550);
-
-                      engine = Matter.Engine.create();
-                      world = engine.world;
-
-                      // Create slingshot
-                      var ground = Matter.Bodies.rectangle(400, 500, 600, 20, { isStatic: true });
-                      var boxA = Matter.Bodies.rectangle(200, 100, 80, 80);
-                       var boxb = Matter.Bodies.rectangle(300, 200, 80, 80);
-                        slingshot = Matter.Constraint.create({
-                             pointA: { x: 200, y: 100 },
-                             bodyB: boxA,
-                              stiffness: 0.05,
-                               length: 30
-                             });
+                var ground = Matter.Bodies.rectangle(400, 500, 600, 20, { isStatic: true });
+                var boxA = Matter.Bodies.rectangle(200, 100, 80, 80);
+                var boxb = Matter.Bodies.rectangle(300, 200, 80, 80);
+                slingshot = Matter.Constraint.create({
+                  pointA: { x: 200, y: 100 },
+                  bodyB: boxA,
+                  stiffness: 0.05,
+                  length: 30
+                });
 
 
-                             // Create buckets
-                              for (var i = 0; i < 3; i++) {
-                                  var bucket = Matter.Bodies.rectangle(100 + i * 400, 500, 100, 100);
-                                   buckets.push(bucket);
-                                  }
-                                   Matter.World.add(world, [ground, boxA, boxb, slingshot])
-                                }
+                for (var i = 0; i < 3; i++) {
+                  var bucket = Matter.Bodies.rectangle(100 + i * 400, 500, 100, 100);
+                  buckets.push(bucket);
+                }
+                 Matter.World.add(world, [ground, boxA, boxb, slingshot]);
+                 // Start the timer
+
+                 timer = 60; // 1 minute timer
+                 setInterval(updateTimer, 1000); // Update timer every second
+                }
+
 
                 function draw() {
-                     background(52, 201, 235);
-                      Matter.Engine.update(engine);
+                  background(52, 201, 235);
+                  Matter.Engine.update(engine);
+                  var posA = slingshot.pointA;
+                  var posB = slingshot.bodyB.position;
+                  line(posA.x, posA.y, posB.x, posB.y);
+                  fill(229, 235, 52);
+                  ellipse(posB.x - 40, posB.y - 40, 80, 80);
+                  fill(235, 128, 52);
+                  ellipse(posB.x - 40, posB.y - 30, 30, 20);
+                  fill(0);
+                  ellipse(posB.x - 30, posB.y - 55, 10, 20);
+                  ellipse(posB.x - 55, posB.y - 55, 10, 20);
+                  fill(52, 201, 235);
 
-                      // Draw slingshot
-                      var posA = slingshot.pointA;
-                      var posB = slingshot.bodyB.position;
-                       line(posA.x, posA.y, posB.x, posB.y);
-                        fill(229, 235, 52);
-                         ellipse(posB.x - 40, posB.y - 40, 80, 80);
-                         fill(235, 128, 52);
-                          ellipse(posB.x - 40, posB.y - 30, 30, 20);
-                           fill(0);
-                             ellipse(posB.x - 30, posB.y - 55, 10, 20);
-                              ellipse(posB.x - 55, posB.y - 55, 10, 20);
-
-                              // Draw buckets
-                               fill(52, 201, 235);
-                                for (var i = 0; i < buckets.length; i++) {
-                               rect(buckets[i].position.x - 50, buckets[i].position.y - 50, 100, 100);
-                             }
-
-                             // Display score
-                              fill(0);
-                              textSize(20);
-                               text('Score: ' + score, 20, 30);
+                  for (var i = 0; i < buckets.length; i++) {
+                    rect(buckets[i].position.x - 50, buckets[i].position.y - 50, 100, 100);
+                  }
 
 
-                               // Spawn ducks
-                                for (var i = ducks.length - 1; i >= 0; i--) {
-                                      ducks[i].display();
-                                        if (ducks[i].isCaught()) {
-                                              score++;
-                                               ducks.splice(i, 1);
-                                              }
+                  // Constrain score and high score display within canvas
+                  fill(0);
+                  textSize(20);
+                  text('Score: ' + score, max(20, width - 250), 30); // Constrain score to stay within canvas
+                  text('High Score: ' + highScore, max(20, width - 250), 60); // Constrain high score to stay within canvas
 
-                                            }
-                                        }
-                    function mouseDragged() {
-                        var posB = slingshot.bodyB.position
+                  // Display timer
+                  text('Time: ' + timer, width - 100, 30);
 
-                         if (mouseX > posB.x - 40 && mouseX < posB.x + 40 && mouseY > posB.y - 40 && mouseY < posB.y + 40) {
-                              initialPos = { x: mouseX, y: mouseY };
-                             }
-                            }
-
-
-                    function mouseDragged() {
-                         var posB = slingshot.bodyB.position;
-                          if (initialPos) {
-
-
-                            // Control slingshot with mouse
-                    Matter.Body.setPosition(slingshot.bodyB, { x: posB.x + mouseX - initialPos.x, y: posB.y + mouseY - initialPos.y });
-             }
-            }
-
-
-                 function mouseReleased() {
-                     initialPos = null;
-                      // When mouse released, apply force to the slingshot
-                     var force = Matter.Vector.sub(slingshot.pointA, slingshot.bodyB.position);
-                      // Adjust the multiplier for force strength
-                      Matter.Body.applyForce(slingshot.bodyB, slingshot.bodyB.position, force);
+                  // Check if the game is over
+                   if (gameOver) {
+                     fill(255, 0, 0);
+                     textSize(50);
+                     textAlign(CENTER, CENTER);
+                     text("Game Over", width / 2, height / 2);
                     }
 
 
-                    // Duck class
-                    function Duck(x, y) {
-                        this.body = Matter.Bodies.circle(x, y, 30);
-                         Matter.World.add(world, this.body);
-                          this.display = function () {
-                             var pos = this.body.position;
-                             fill(235, 232, 52);
-                             ellipse(pos.x, pos.y, 60, 60);
-                             }
-                 this.isCaught = function () {
-                     for (var i = 0; i < buckets.length; i++) {
-                         if (Matter.Bounds.contains(buckets[i].bounds, this.body.position)) {
-                             Matter.World.remove(world, this.body);
-                              return true;
-                             }
-                             }
-                              return false;
-                             }
-                            }
-
-                            // Function to spawn ducks
-
-                function spawnDuck() {
-                     var x = random(width);
-                     var y = random(height / 2);
-                      ducks.push(new Duck(x, y));
+                    for (var i = ducks.length - 1; i >= 0; i--) {
+                      ducks[i].display();
+                  if (ducks[i].isCaught()) {
+                    score++;
+                     ducks.splice(i, 1); }
+                     }
                     }
 
-                    // Call spawnDuck every second
-                    setInterval(spawnDuck, 110);
+              function mouseDragged() {
+                var posB = slingshot.bodyB.position;
+                if (initialPos) {
+                  Matter.Body.setPosition(slingshot.bodyB, { x: posB.x + mouseX - initialPos.x, y: posB.y + mouseY - initialPos.y });
+                }
+              }
 
 
-                    </script>
-                    </body>
+              function mouseReleased() {
+                 initialPos = null;
+                 var force = Matter.Vector.sub(slingshot.pointA, slingshot.bodyB.position);
+                  Matter.Body.applyForce(slingshot.bodyB, slingshot.bodyB.position, force);
+                   }
 
+                   function Duck(x, y) {
+                    this.body = Matter.Bodies.circle(x, y, 30);
+                    Matter.World.add(world, this.body);
+                    this.display = function () {
+                      var pos = this.body.position;
+                      fill(235, 232, 52);
+                      ellipse(pos.x, pos.y, 60, 60);
+                    }
+                     this.isCaught = function () {
+                      for (var i = 0; i < buckets.length; i++) {
+                        if (Matter.Bounds.contains(buckets[i].bounds, this.body.position)) {
+                           Matter.World.remove(world, this.body);
+                           return true;
+                           }
+                           }
+                           return false;}
+                          }
+
+                  function spawnDuck() {
+                         var x = random(width);
+                         var y = random(height / 2);
+                         ducks.push(new Duck(x, y));
+                        }
+
+                        setInterval(spawnDuck, 170);
+
+
+                    // Function to update timer
+                  function updateTimer() {
+                      if (timer > 0) {
+                        timer--;
+                       } else {
+                        endGame(); // Call endGame function when timer reaches 0
+                       }
+                      }
+
+                    // Function to end the game
+
+                function endGame() {
+                  gameOver = true;
+                  if (score > highScore) {
+                    highScore = score;
+                  }
+
+                  noLoop(); // Stop the game loop
+                }
+
+
+   </script>
+</html>
