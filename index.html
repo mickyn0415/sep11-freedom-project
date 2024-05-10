@@ -84,6 +84,10 @@
                   fill(52, 201, 235);
 
                   for (var i = 0; i < buckets.length; i++) {
+                    fill(255);
+                      text("help ducky catch some donutsssss",500,100);
+                    fill(255,145,48);
+                    noStroke(0);
                     rect(buckets[i].position.x - 50, buckets[i].position.y - 50, 100, 100);
                   }
 
@@ -99,10 +103,11 @@
 
                   // Check if the game is over
                    if (gameOver) {
-                     fill(255, 0, 0);
+                     fill(0, 0, 0);
                      textSize(50);
                      textAlign(CENTER, CENTER);
-                     text("Game Over", width / 2, height / 2);
+                     text("quack! so many donutss :D ", width / 2, height / 2);
+
                     }
 
 
@@ -133,8 +138,10 @@
                     Matter.World.add(world, this.body);
                     this.display = function () {
                       var pos = this.body.position;
-                      fill(235, 232, 52);
+                      fill(234,55,235);
                       ellipse(pos.x, pos.y, 60, 60);
+                      fill(208,181,155);
+                      ellipse(pos.x,pos.y,30,30)
                     }
                      this.isCaught = function () {
                       for (var i = 0; i < buckets.length; i++) {
