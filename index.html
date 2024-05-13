@@ -10,15 +10,13 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
     <style>
     </style>
-    <title>Title</title></head>
+    <title>DUCKY SWONG</title></head>
 
 
     <body>
     </head>
     <div id="game-container"></div>
     <!-- HTML -->
-      <p id="title"> ducky swong</p>
-      <div id="safeTimer">
 
     </div>
    </body>
@@ -63,7 +61,7 @@
                  Matter.World.add(world, [ground, boxA, boxb, slingshot]);
                  // Start the timer
 
-                 timer = 60; // 1 minute timer
+                 timer = 40; // 1 minute timer
                  setInterval(updateTimer, 1000); // Update timer every second
                 }
 
@@ -85,7 +83,10 @@
 
                   for (var i = 0; i < buckets.length; i++) {
                     fill(255);
-                      text("help ducky catch some donutsssss",500,100);
+                     text("CLICK TO CATCH DUNUTSSS!!!",100,50)
+                      text("HELP DUCKY CATCH SOME DONUTSSS!!!",500,100);
+                      text("DON'T CLICK TO FAST IT WILL GET STUCK!!!",300,150)
+                      text(" LAUNCHER IS MADE TO NOT FUNCTION NORMALLY(NOT ON PURPOSE THO)",100,600)
                     fill(255,145,48);
                     noStroke(0);
                     rect(buckets[i].position.x - 50, buckets[i].position.y - 50, 100, 100);
@@ -106,7 +107,9 @@
                      fill(0, 0, 0);
                      textSize(50);
                      textAlign(CENTER, CENTER);
-                     text("quack! so many donutss :D ", width / 2, height / 2);
+                     text("QUACK SO MANY DONUTSSS!! :D ", width / 2, height / 2);
+
+
 
                     }
 
