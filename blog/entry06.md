@@ -1,7 +1,14 @@
 # Entry 6
-##### X/X/XX
+##### 5/23/24
 
-Text
+takeaway from elevator pitch
+
+
+
+
+
+
+takeaway from in-class presentation
 
 [Previous](entry05.md) | [Next](entry07.md)
 
